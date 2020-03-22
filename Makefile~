@@ -1,0 +1,13 @@
+#NAME: Daniel Adea
+#EMAIL: dadea@ucla.edu
+#ID: 204999515
+
+default:
+	gcc -g lab4c_tcp.c -o lab4c_tcp -lmraa -lm -Wall -Wextra
+	gcc -g lab4c_tls.c -o lab4c_tls -lmraa -lm -Wall -Wextra -lssl -lcrypto
+
+dist:
+   
+
+clean:
+
