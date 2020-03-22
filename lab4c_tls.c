@@ -227,7 +227,7 @@ int main( int argc, char* argv[])
             if(fds[0].revents & POLLIN) 
             {
                 //use SSL
-                int numRead = SSL_read(sockfd, buf, readSize);
+                int numRead = SSL_read(ssl, buf, readSize);
                 if(numRead < 0)
                     printExit("Error reading from stdin\n");
                 int i;
