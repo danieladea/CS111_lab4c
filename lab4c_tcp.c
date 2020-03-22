@@ -95,21 +95,19 @@ int main( int argc, char* argv[])
                
         }
 
-        /*if(argv[optind] == NULL)
-        {
-              fprintf(stderr, "No port number was given \n");
-              exit(1);
-	    }*/
+    }
+
+    if(optind < argc)
+    {
         portNum = atoi(argv[optind]);
         if(portNum<= 0)
         {
             printExit("Failed to get port number. Please give a valid port");
         }
-        if(id==NULL || hostname==NULL || logFlag==0)
-        {
-            printExit("Missing mandatory parameter: please use --id,--host,--log");
-        }
-
+    }
+    if(id==NULL || hostname==NULL || logFlag==0)
+    {
+        printExit("Missing mandatory parameter: please use --id,--host,--log");
     }
 
     //init socket
