@@ -337,7 +337,7 @@ void offFunc()
 
     char buffer[128];
     sprintf(buffer, "%02d:%02d:%02d SHUTDOWN\n", tm->tm_hour, tm->tm_min, tm->tm_sec);
-    safeSSLwr(buff);
+    safeSSLwr(buffer);
     
     if(logFlag)   
         dprintf(logFD, "%02d:%02d:%02d SHUTDOWN\n", tm->tm_hour, tm->tm_min, tm->tm_sec);
