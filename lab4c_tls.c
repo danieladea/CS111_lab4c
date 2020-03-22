@@ -119,7 +119,7 @@ int main( int argc, char* argv[])
     {
         printExit("Missing mandatory parameter: please use --id,--host,--log");
     }
-    
+
     //init socket
     struct sockaddr_in serv_addr;
     struct hostent *serverHost;
@@ -156,24 +156,22 @@ int main( int argc, char* argv[])
     SSL_load_error_strings();
 
     SSL_CTX *ssl_ctx = SSL_CTX_new(TLSv1_client_method());
-    
-    if(ssl_ctx == NULL){
+    if(ssl_ctx == NULL)
         printExit("Failed to create new SSL context");
     
     ssl = SSL_new(ssl_ctx);
     if(ssl == NULL)
         printExit("Failed to create new SSL struct");
 
-    sslfdCheck = SSL_set_fd(ssl, socketfd); 
+    int sslfdCheck = SSL_set_fd(ssl, sockfd); 
     if(sslfdCheck<0) 
         printExit("Failed to set ssl fd");
 
-    sslconnectCheck = SSL_connect(ssl);
+    int sslconnectCheck = SSL_connect(ssl);
     if(sslconnectCheck == 0)
         printExit("Failed to connect ssl");
 
     char idBuff[32];
-
     sprintf(idBuff, "ID=%s\n", id);
     safeSSLwr(idBuff);
     if(logFlag)
@@ -210,7 +208,7 @@ int main( int argc, char* argv[])
             float temperature = readTemp(); 
            
             sprintf(buffer, "%02d:%02d:%02d %.1f\n",  updateTime->tm_hour,  updateTime->tm_min,  updateTime->tm_sec, temperature);
-            safeSSLwr(buff);
+            safeSSLwr(buffer);
             if(logFlag) 
             {
                 dprintf(logFD, "%02d:%02d:%02d %.1f\n",  updateTime->tm_hour,  updateTime->tm_min,  updateTime->tm_sec, temperature);
@@ -349,8 +347,8 @@ void offFunc()
 
 void safeSSLwr(char* message) 
 {
-    sslwrCheck = SSL_write(ssl, message, strlen(message);
-    if(sslwrCheck)< 0)
+    int sslwrCheck = SSL_write(ssl, message, strlen(message));
+    if(sslwrCheck< 0)
         printExit("Failed on ssl write");
 }
 
