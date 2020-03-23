@@ -1,3 +1,40 @@
 NAME: DANIEL ADEA
 EMAIL: dadea@ucla.edu
 ID: 204999515
+
+
+Files: 
+
+README-This file which describes the assignment and the files included.
+
+Makefile-Contains the targets to make a tarball, clean files created, and compile executables. 
+
+lab4c_tcp.c-
+c file that builds and runs on a Beaglebone.
+This is based on the temperature sensor application for lab4b (including the --period=, --scale= and --log= options).
+accepts the following (mandatory) new parameters:
+--id=9-digit-number
+--host=name or address
+--log=filename
+port number
+There is no --port= in front of the port number. This is a non-switch parameter.
+It accepts the same commands and generates the same reports as the previous Beaglebone project, but now the input and output are from/to a network connection to a server.
+It opens a TCP connection to the server at the specified address and port
+
+as before,it  sends (and logs) newline terminated temperature reports over the connection
+as before, processes (and logs) newline-terminated commands received over the connection
+It does not accept commands from standard input, or send received commands or generated reports to standard output. 
+
+lab4c_tls.c-
+This is souorce code to
+open a TLS connection to the server at the specified address and port
+send (and log) your student ID followed by a newline
+send (and log) temperature reports over the connection
+process (and log) commands received over the connection
+Usage is similar to lab4c_tcp
+
+Sources: Alex's discussion notes mainly
+
+Problems:
+Had to borrow a beaglebone since mine did not have ssl and could not connect to my internet at home.
+
